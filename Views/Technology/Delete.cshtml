@@ -1,0 +1,9 @@
+﻿@model CandidateProfileSystem.Models.Technology
+
+<h2>Are you sure you want to delete this?</h2>
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <p>@Model.TechnologyName</p>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

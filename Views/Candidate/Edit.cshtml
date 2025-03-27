@@ -1,0 +1,64 @@
+﻿@model CandidateProfileSystem.Models.Candidate
+
+@{
+    ViewData["Title"] = "Edit Candidate";
+}
+
+<h2>Edit Candidate</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" /> <!-- Hidden Field for Candidate ID -->
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactNumber"></label>
+        <input asp-for="ContactNumber" class="form-control" />
+        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DegreeName"></label>
+        <input asp-for="DegreeName" class="form-control" />
+        <span asp-validation-for="DegreeName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DegreeCompletionYear"></label>
+        <input asp-for="DegreeCompletionYear" type="number" class="form-control" />
+        <span asp-validation-for="DegreeCompletionYear" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TechnologyId">Technology</label>
+        <select asp-for="TechnologyId" class="form-control">
+            <option value="">-- Select Technology --</option>
+            @foreach (var tech in ViewBag.Technologies)
+            {
+                <option value="@tech.Id" selected="@(tech.Id == Model.TechnologyId ? "selected" : null)">
+                    @tech.TechnologyName
+                </option>
+            }
+        </select>
+        <span asp-validation-for="TechnologyId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
